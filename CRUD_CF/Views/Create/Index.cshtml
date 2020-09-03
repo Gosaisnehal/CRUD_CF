@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CRUD_CF.Contact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <input type="submit" value="Create New" onclick="location.href='@Url.Action("Create","Create")'" class="btn btn-primary" />
+     @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.e_mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unitNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.streetNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.streetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.countryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActionSelected)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.e_mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unitNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.streetNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.streetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suburb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Countries.countryName )
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActionSelected)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
