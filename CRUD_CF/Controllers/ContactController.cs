@@ -14,7 +14,7 @@ using CRUD_CF.Models;
 
 namespace CRUD_CF.Controllers
 {
-    public class CreateController : Controller
+    public class ContactController : Controller
     {
         private crudDBContext db = new crudDBContext();
 
@@ -23,7 +23,8 @@ namespace CRUD_CF.Controllers
         {
             var data = db.Contacts.ToList();
             var CountryListSP = db.Countries.ToList();
-            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName");
+            var defaultCountry = 3; 
+            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName", defaultCountry );
             return View(data);
         }
 

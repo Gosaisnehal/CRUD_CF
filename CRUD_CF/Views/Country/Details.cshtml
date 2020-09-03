@@ -1,0 +1,41 @@
+﻿@model CRUD_CF.Country
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            
+            @Html.DisplayNameFor(model => model.countryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countryName)
+        </dd>
+            
+       
+    </dl>
+    <p>
+        <div class="form-group">
+            <div class="col-md-offset-0 col-md-10">
+                <input type="submit" value="Edit" onclick="location.href='@Url.Action("Edit","Country", new { id = Model.countryId })'" class="btn btn-primary" />
+            </div>
+        </div>
+    </p>
+    <p>
+        <div class="form-group">
+            <div class="col-md-offset-0 col-md-10">
+                <input type="submit" value="Back to List" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
+            </div>
+        </div>
+    </p>
+    <hr />
+</div>
+
+

@@ -196,9 +196,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CreateController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="DAL\crudDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -226,6 +227,10 @@
     <Compile Include="Migrations\202009030358428_cratedrelationsbetweencontactandcountry.cs" />
     <Compile Include="Migrations\202009030358428_cratedrelationsbetweencontactandcountry.Designer.cs">
       <DependentUpon>202009030358428_cratedrelationsbetweencontactandcountry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009030514378_validationforcountrytable.cs" />
+    <Compile Include="Migrations\202009030514378_validationforcountrytable.Designer.cs">
+      <DependentUpon>202009030514378_validationforcountrytable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,11 +303,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Create\Create.cshtml" />
-    <Content Include="Views\Create\Delete.cshtml" />
-    <Content Include="Views\Create\Details.cshtml" />
-    <Content Include="Views\Create\Edit.cshtml" />
-    <Content Include="Views\Create\Index.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Contact\Details.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Delete.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Country\Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009030358428_cratedrelationsbetweencontactandcountry.resx">
       <DependentUpon>202009030358428_cratedrelationsbetweencontactandcountry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009030514378_validationforcountrytable.resx">
+      <DependentUpon>202009030514378_validationforcountrytable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
