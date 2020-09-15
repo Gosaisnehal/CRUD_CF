@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <h2>Index</h2>
 
 <p>
@@ -83,14 +84,79 @@
             @Html.DisplayFor(modelItem => item.Countries.countryName )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isActionSelected)
+            @*@Html.CheckBoxFor(modelItem => item.isActionSelected)*@
+            <input type="checkbox" id="checkbox" value="@item.ID"/>
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        </td>*@
     </tr>
 }
 
 </table>
+
+        <input type="text" id ="selectedId" />
+
+       <div class="form-group">
+    <div class="col-md-offset-10 col-md-10">
+        <input id ="button1" type="submit" value="Edit" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+        
+        <input type="submit" value="Details" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+    
+        <input type="submit" value="Delete" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+    </div>
+</div>
+
+@*jquery uncheck checkbox when another is checked *@
+<script type="text/javascript">
+    $('input[type="checkbox"]').click(function () {
+        var isCheckboxChecked = this.checked;
+        $('input[type="checkbox"]').attr('checked', false);
+        this.checked = isCheckboxChecked;
+    })
+</script>
+
+<script type="text/javascript">
+    $('#button1').click(function() {
+        if($(checkbox).is(':checked'))
+        {
+            var id = $(this).closest('tr')
+            $('input[type ="text"]').val(id);
+            //alert(id);
+        }
+        //var row = $('input[type="checkbox"]:checked').closest('tr');
+        //var rowid = $(this).data[1];
+        //alert(rowid);
+        //$('input[type ="text"]').val(row);
+    })
+    </script>
+
+
+
+
+
+
+@*<script type="text/javascript">
+               
+                    $('#button1').click(function () {
+                        //var result = $('input[type="checkbox"]:checked');
+                        var row = $('input[type="checkbox"]').closest('tr');
+                        var rowid = $(this).data[1];
+                        //alert(message);
+                        ('input[type ="text"]').val(rowid);
+
+                        //if(result.length > 0)
+                        //{
+                        //    alert("in the loop");
+
+                        //}
+                        //else
+                        //{
+                        //    alert("in the loop but nothing selected");
+
+                        //}
+                    })
+                
+    </script>*@

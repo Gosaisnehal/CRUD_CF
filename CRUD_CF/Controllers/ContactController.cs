@@ -21,10 +21,11 @@ namespace CRUD_CF.Controllers
         // GET: Create
         public ActionResult Index()
         {
+            
             var data = db.Contacts.ToList();
             var CountryListSP = db.Countries.ToList();
-            var defaultCountry = 3; 
-            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName", defaultCountry );
+            //var defaultCountry = ; 
+            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName" );
             return View(data);
         }
 

@@ -130,8 +130,11 @@ namespace CRUD_CF.Controllers
        [HttpGet]
        public ActionResult Default()
         {
-            var data = db.Countries.ToList()
-            return View(data);
+           
+                 
+            var list = db.Countries.ToList();
+            ViewBag.CountryList = new SelectList(list, "countryId", "countryName" );
+            return View();
         }
     }
 }
