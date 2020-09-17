@@ -16,18 +16,28 @@
            
             <div class="col-md-10">
                 @Html.Label("Choose a country:")
-                @Html.DropDownListFor(model => model.countryId, ViewBag.Countrylist as SelectList, "Set Default Country" , new { @class = "form - control" })
+                @Html.DropDownListFor(model => model.countryId, ViewBag.Countrylist as SelectList, "Set Default Country" , new { @class = "form - control"  })
                 @Html.ValidationMessageFor(model => model.countryId, "", new { @class = "text-danger" })
+                                    
+                <input type="submit" value="Set Default" class="btn btn-primary col-md-offset-1" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Set Default" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@  />
-            </div>
-        </div>
+        
         <br />
         <br />
         
     </p>
 
+@section Scripts {
+    <script>
+        var myFunction = function ()
+        {
+            var x = $(this).val();
+            alert(x);
+        }
+        $('#countryId').on("change", myFunction);
+       
+
+    </script>
+    }

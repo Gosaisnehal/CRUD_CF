@@ -49,7 +49,8 @@ namespace CRUD_CF.Controllers
         {
             crudDBContext db = new crudDBContext();
             var CountryListSP = db.Countries.ToList();
-            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName");
+            var setCountryId = 2 ;
+            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName", setCountryId );
             return View();
         }
 

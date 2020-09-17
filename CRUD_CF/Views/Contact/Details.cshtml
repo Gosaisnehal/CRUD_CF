@@ -9,7 +9,7 @@
 <div>
    
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal active ">
         <dt>
             
             @Html.DisplayNameFor(model => model.FullName)
@@ -93,19 +93,15 @@
     </dl>
     <p>
         <div class="form-group">
-            <div class="col-md-offset-0 col-md-10">
+            <div class="col-md-offset-1 col-md-10">
                 <input type="submit" value="Edit" onclick="location.href='@Url.Action("Edit","Contact", new { id = Model.ID })'" class="btn btn-primary" />
-            </div>
-        </div>
-    </p>
-    <p>
-        <div class="form-group">
-            <div class="col-md-offset-0 col-md-10">
                 <input type="submit" value="Back to List" onclick="location.href='@Url.Action("Index","Contact")'" class="btn btn-primary" />
             </div>
         </div>
-    </p>
-    <hr />
+    </p>  
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 

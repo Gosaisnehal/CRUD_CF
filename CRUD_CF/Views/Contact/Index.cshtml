@@ -4,15 +4,32 @@
     ViewBag.Title = "Index";
 }
 <script src="~/Scripts/jquery-3.5.1.js"></script>
-<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+
 
 <h2>Index</h2>
+<style>
+    p {
+        color: red;
+        text-align: center;
+    }
+    .table {
 
+        text-align: left justify ;
+        background-color: #fff;
+        font-family: Calibri;
+        font-size: 14px;
+        color: #808080;
+        width:100%;
+        margin:20px;                   
+    }
+    
+
+</style>
 <p>
     <input type="submit" value="Create New" onclick="location.href='@Url.Action("Create","Contact")'" class="btn btn-primary" />
      @*@Html.ActionLink("Create New", "Create")*@
 </p>
-<table class="table">
+<table class="table table-bordered table-hover" data- >
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FullName)
@@ -48,7 +65,6 @@
         <th>
             @Html.DisplayNameFor(model => model.isActionSelected)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -82,11 +98,12 @@
             @Html.DisplayFor(modelItem => item.company)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Countries.countryName )
+            @Html.DisplayFor(modelItem => item.Countries.countryName)
         </td>
         <td>
             @*@Html.CheckBoxFor(modelItem => item.isActionSelected)*@
-            <input type="checkbox" id="checkbox" value="@item.ID"/>
+
+            <input type="checkbox" id="checkbox" data-id ="@(item.ID)"/>
         </td>
         @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
@@ -97,29 +114,148 @@
 }
 
 </table>
-
-        <input type="text" id ="selectedId" />
+        @*hidden text field to store rowid*@
+        <input type="text" id ="selectedId" hidden="hidden"/> 
 
        <div class="form-group">
     <div class="col-md-offset-10 col-md-10">
-        <input id ="button1" type="submit" value="Edit" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+        <input id ="button1" type="submit" value="Edit" onclick="editItem()"@*$(this).data('id'))*@" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
         
-        <input type="submit" value="Details" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+        <input type="submit" value="Details" onclick="detailsItem()" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
     
-        <input type="submit" value="Delete" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
+        <input type="submit" value="Delete" onclick="deleteItem()" class="btn btn-primary" @*PostBackUrl="~/Contact/Create.cshtml"*@ />
     </div>
 </div>
 
 @*jquery uncheck checkbox when another is checked *@
-<script type="text/javascript">
+@*https://stackoverflow.com/questions/17785010/jquery-uncheck-other-checkbox-on-one-checked*@
+
+@section Scripts {
+    <script>
+
+        var myFunction = function () {
+
+            //if already checked removed the value from textbox 
+
+            var x = $('input[type="checkbox"]').is(":checked");
+            
+            if (x == true)
+            {
+                $('input[type="checkbox"]').not(this).prop("checked", false);
+                //$("input:checked") = x ; 
+                //alert($(this).data('id'));
+                var rowid = $(this).data('id');
+                //alert(rowid); 
+                $('input[type ="text"]').val(rowid);
+            }
+            else
+            {   //setting value for textbox to empty
+                $('input[type ="text"]').val('');
+            }
+        }
+
+        $("input[type=checkbox]").on("click", myFunction);
+
+
+        //get id
+        //if id is not null then
+        //open link with id above
+
+        var editItem = function () {
+
+            var gotRowId = document.getElementById("selectedId").value;
+            //var gotRowId = $('#selectedId').valueOf(); 
+            if (gotRowId != null && gotRowId != '') 
+            {
+                window.location.href = "/Contact/Edit/" + gotRowId;
+                //alert(gotRowId); for testing purpose.                            
+            }
+            else 
+            {
+                alert("Please select an item");
+            } 
+        }
+
+        var detailsItem = function () {
+            
+            var gotRowId = document.getElementById("selectedId").value;
+            if (gotRowId != null && gotRowId != '' )
+            {
+                window.location.href = "/Contact/Details/" + gotRowId;
+                //alert(gotRowId); for testing purpose.                            
+            }
+            else
+            {
+                alert("Please select an item"); 
+            }
+        }
+
+        var deleteItem = function () {
+            
+            var gotRowId = document.getElementById("selectedId").value;
+            if (gotRowId != null && gotRowId != '' )
+            {
+                window.location.href = "/Contact/Delete/" + gotRowId;
+                //alert(gotRowId); for testing purpose.                            
+            }
+            else
+            {
+                alert("Please select an item"); 
+            }
+        }
+    </script>
+
+
+
+    @*<script type="text/javascript">
     $('input[type="checkbox"]').click(function () {
         var isCheckboxChecked = this.checked;
         $('input[type="checkbox"]').attr('checked', false);
         this.checked = isCheckboxChecked;
     })
-</script>
+    </script>
 
-<script type="text/javascript">
+
+
+@*<script>
+    document.getElementById("checkbox").click(function () {
+
+        var x = document.getElementById("checkbox").checked;
+        alert(x);
+        
+    })
+</script>*@
+
+@*<script type="text/javascript">
+    $("input:checkbox").click(function () {
+        var x = $("input:checked");
+        //var x = document.getElementById("checkbox").checked;
+        $('input:checkbox"').attr('checked', false);
+        this.checkbox = x;
+            })
+</script>*@
+
+@*jquery uncheck checkbox when another is checked *@
+
+@*<script>
+    $("input:checkbox").click(function () {
+        var isCheckBoxChecked = $("input:checkbox").prop('checked');
+        $("input:checkbox").attr('checked', false);
+        $(this).prop = isCheckBoxChecked;
+    })
+</script>*@
+
+@*<script type="text/javascript">
+    $('#button1').click(function() {
+    
+        var x = document.getElementById("checkbox");
+        var y = document.getElementsById("selectedId");
+        var z = x.value;
+        alert("z");
+    })
+</script>*@
+
+@*<script type="text/javascript">
     $('#button1').click(function() {
         if($(checkbox).is(':checked'))
         {
@@ -132,7 +268,7 @@
         //alert(rowid);
         //$('input[type ="text"]').val(row);
     })
-    </script>
+    </script>*@
 
 
 
@@ -161,3 +297,10 @@
                     })
                 
     </script>*@
+
+
+
+
+
+
+}
