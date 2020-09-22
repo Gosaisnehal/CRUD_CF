@@ -10,7 +10,7 @@ using CRUD_CF;
 using CRUD_CF.DAL;
 using CRUD_CF.Migrations;
 using CRUD_CF.Models;
-
+using System.Collections;
 
 namespace CRUD_CF.Controllers
 {
@@ -48,9 +48,29 @@ namespace CRUD_CF.Controllers
         public ActionResult Create()
         {
             crudDBContext db = new crudDBContext();
-            var CountryListSP = db.Countries.ToList();
-            var setCountryId = 2 ;
-            ViewBag.CountryList = new SelectList(CountryListSP, "countryId", "countryName", setCountryId );
+
+            // 1st method , displays default country first and with the others listed also
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            foreach (Country country in db.Countries)
+            {
+                SelectListItem selectListItem = new SelectListItem
+                {
+                    Text = country.countryName,
+                    Value = country.countryId.ToString(),
+                    Selected = country.setDefault.Equals(true)
+                };
+                selectListItems.Add(selectListItem);
+            }
+            ViewBag.countryId = selectListItems;
+
+            // 2nd method , displays only the one selected as default
+            //var CountryListSP = db.Countries.ToList().Where(model => model.setDefault == true); 
+            //ViewBag.countryId = new SelectList(CountryListSP, "countryId", "countryName");
+
+            //3rd method , displays all countries in the list 
+            //var CountryListSP = db.Countries.ToList();
+            //ViewBag.countryId = new SelectList(CountryListSP, "countryId", "countryName");
+
             return View();
         }
 

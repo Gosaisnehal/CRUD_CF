@@ -2,20 +2,19 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create a new country to list.</h2>
+<h2>Create</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Country</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-group">
             @Html.LabelFor(model => model.countryName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,25 +24,22 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.LabelFor(model => model.setDefault, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.setDefault)
+                    @Html.ValidationMessageFor(model => model.setDefault, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" value="Back to list" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
+             </div>
+            </div>
+        </div>
+    
 }
 
-<div>
-    <div class="col-md-offset-5 col-md-10">
-        <input type="submit" value="Back to list" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
-@{
-    ViewBag.Title = "Existing Country List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}

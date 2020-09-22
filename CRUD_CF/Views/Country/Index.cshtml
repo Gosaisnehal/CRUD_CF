@@ -2,21 +2,25 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
 <p>
-    <input type="submit" value="Create New" onclick="location.href='@Url.Action("Create","Country")'" class="btn btn-primary" /> |
-    <input type="submit" value="Choose a default country" onclick="location.href='@Url.Action("Default","Country")'" class="btn btn-primary" />
-     @*@Html.ActionLink("Create New", "Create")*@
-</p>
+    <input type="submit" value="Create New" onclick="location.href='@Url.Action("Create","Country")'" class="btn btn-primary" />
+    @*@Html.ActionLink("Create New", "Create")*@
+</p> 
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.countryName)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.setDefault)
+        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -24,10 +28,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.countryName)
         </td>
-
         <td>
-            @*<input type="submit" value="Edit" onclick="location.href='@Url.Action("Edit","Country")'" class="btn btn-primary" /> |
-            <input type="submit" value="Details" onclick="location.href='@Url.Action("Details","Country")'" class="btn btn-primary" />*@
+            @Html.DisplayFor(modelItem => item.setDefault)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.countryId }) |
             @Html.ActionLink("Details", "Details", new { id=item.countryId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.countryId })

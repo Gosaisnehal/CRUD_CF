@@ -2,40 +2,41 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-   
+    <h4>Country</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            
             @Html.DisplayNameFor(model => model.countryName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.countryName)
         </dd>
-            
-       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.setDefault)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.setDefault)
+        </dd>
+
     </dl>
-    <p>
-        <div class="form-group">
-            <div class="col-md-offset-0 col-md-10">
-                <input type="submit" value="Edit" onclick="location.href='@Url.Action("Edit","Country", new { id = Model.countryId })'" class="btn btn-primary" />
-            </div>
-        </div>
-    </p>
-    <p>
-        <div class="form-group">
-            <div class="col-md-offset-0 col-md-10">
-                <input type="submit" value="Back to List" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
-            </div>
-        </div>
-    </p>
-    <hr />
 </div>
-
-
+<p>
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" value="Edit" onclick="location.href='@Url.Action("Edit","Country", new { id = Model.countryId })'" class="btn btn-primary" />
+            <input type="submit" value="Back to List" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
+        </div>
+    </div>
+    <br />
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.countryId }) |
+    @Html.ActionLink("Back to List", "Index")*@
+</p>

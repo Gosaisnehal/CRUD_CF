@@ -16,7 +16,8 @@ namespace CRUD_CF
         [DisplayName("Country Name")]
         public string countryName { get; set; }
 
+        [DisplayName("Set Default")]
+        public bool setDefault { get; set; }
         
-
     }
 }

@@ -232,6 +232,10 @@
     <Compile Include="Migrations\202009030514378_validationforcountrytable.Designer.cs">
       <DependentUpon>202009030514378_validationforcountrytable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009170726307_setDefault.cs" />
+    <Compile Include="Migrations\202009170726307_setDefault.Designer.cs">
+      <DependentUpon>202009170726307_setDefault.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -312,12 +316,11 @@
     <Content Include="Views\Contact\Details.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Country\Create.cshtml" />
-    <Content Include="Views\Country\Delete.cshtml" />
-    <Content Include="Views\Country\Details.cshtml" />
-    <Content Include="Views\Country\Edit.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
-    <Content Include="Views\Country\Default.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009030514378_validationforcountrytable.resx">
       <DependentUpon>202009030514378_validationforcountrytable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009170726307_setDefault.resx">
+      <DependentUpon>202009170726307_setDefault.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
