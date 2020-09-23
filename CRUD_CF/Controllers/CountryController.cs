@@ -123,33 +123,50 @@ namespace CRUD_CF.Controllers
 
         [HttpPost]
         public ActionResult Delete(int id, Country model)
+            
+
         {
             using (var db = new crudDBContext())
-            {
-                // accessing pertcular record for matching ID,choosen from  
-                var data = db.Countries.Where(x => x.countryId == id).SingleOrDefault();
-
-                if (data != null)
-                { 
-                    if(data.setDefault)
+                try
+                {
                     {
+                        // accessing pertcular record for matching ID,choosen from  
+                        var data = db.Countries.Where(x => x.countryId == id).SingleOrDefault();
 
-                        var item = db.Countries.Where(x => x.countryId == 1).SingleOrDefault();
-                        item.setDefault = true;
-                        //db.Countries.SqlQuery("Set setDefault= 1 Where dbo.Countries.countryId =4");
+                        if (data != null && data.countryId !=1)
+                        {
+                            if (data.setDefault)
+                            {
+
+                                var item = db.Countries.Where(x => x.countryId == 1).SingleOrDefault();
+                                item.setDefault = true;
+                                //db.Countries.SqlQuery("Set setDefault= 1 Where dbo.Countries.countryId =4");
+                            }
+                            db.Countries.Remove(data);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Msg"] = "Australia cannot be deleted.";
+                            return RedirectToAction("Index");
+
+                        }
                     }
-                    db.Countries.Remove(data);
-                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Msg"] = "Country was not deleted.There are records matching for the country. Please delete the records first." ;
                     return RedirectToAction("Index");
                 }
-                else
-                {
-                    return View();
-
-                }
-            }
+                //catch
+                //{
+                //       return View();
+                //    //ViewBag.msg("There are records matching the country. Please delete the records first.");
+                //}
 
         }
+
 
        [HttpGet]
        public ActionResult Default()

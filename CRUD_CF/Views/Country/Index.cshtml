@@ -4,6 +4,28 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+        .table {
+        text-align: left justify;
+        background-color: #fff;
+        font-family: Calibri;
+        font-size: 14px;
+        color: #808080;
+        width: 100%;
+        margin: 20px;
+    }
+        .alert-warning{
+            color:red;
+            background-color:lightskyblue;
+           }
+</style>
+<div class="alert-warning">
+    @if (TempData["Msg"] != null)
+    {
+        <h4>@TempData["Msg"].ToString()</h4>
+
+    }
+</div>
 
 <h2>Index</h2>
 
@@ -12,7 +34,7 @@
     @*@Html.ActionLink("Create New", "Create")*@
 </p> 
 
-<table class="table">
+<table class="table table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.countryName)

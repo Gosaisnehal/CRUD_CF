@@ -4,7 +4,30 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .table {
+        text-align: left justify;
+        background-color: #fff;
+        font-family: Calibri;
+        font-size: 14px;
+        color: #808080;
+        width: 100%;
+        margin: 20px;
+    }
 
+    .alert-warning {
+        color: red;
+        background-color: lightskyblue;
+    }
+</style>
+
+
+<br/>
+<br />
+@if(TempData["Msg"] != null)
+{
+    <h4>@TempData["Msg"].ToString()</h4>
+}
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -33,7 +56,7 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color col-md-offset-1 ">
             <input type="submit" value="Delete" class="btn btn-primary" /> 
             <input type="button" value="Back to list" onclick="location.href='@Url.Action("Index","Country")'" class="btn btn-primary" />
         </div>
